@@ -1,0 +1,142 @@
+mixin badge(text)
+    - let attr = (text === "Комфорт") ? 'comfort' : 'installment'
+    div(class=`card__badge card__badge--${attr}`)=text
+|
+mixin card(className, title, term, metro, address, ...badges)
+    - className !== "" ? className = ` ${className}` : className
+    a(class=`card__link${className}` href="#")
+        div(class="card")
+            if(badges[0])
+                div(class="card__badges")
+                    each badge in badges
+                        +badge(badge)
+            div(class="card__image")
+                img(src="img/first.jpg" alt=title)
+            div(class="card__content")
+                h4(class="card__title")=title
+                div(class="card__term")=term
+                div(class="card__metro")=metro
+                div(class="card__address")=address
+|
+doctype html
+html(lang="ru")
+    block head
+        head
+            meta(charset="utf-8")
+            title Test Project
+            meta(content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport")
+            meta(content="ie-edge" http-equiv="x-ua-compatible")
+            link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
+            link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css")
+            link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&family=Quicksand:wght@700&display=swap")
+            link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet")
+            link(rel="stylesheet" href="css/styles.css")
+    body
+        button(class="toggle-sidebar")
+            div(class="menu-icon-wrapper")
+                div(class="menu-icon")
+        div(class="container")
+            div(class="row")
+                main(class="main cards-holder")
+                    +card("", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240", "Комфорт", "Рассрочка 12 мес.")
+                    +card("", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240", "Комфорт")
+                    +card("", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240", "Рассрочка 12 мес.")
+                    +card("", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240", "Комфорт")
+                    +card("", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240")
+                    +card("", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240", "Рассрочка 12 мес.")
+                    +card("", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240", "Рассрочка 12 мес.")
+                    +card("", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240", "Комфорт")
+                    +card("", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240")
+                    +card("card__link--hidden", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240", "Комфорт", "Рассрочка 12 мес.")
+                    +card("card__link--hidden", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240", "Комфорт")
+                    +card("card__link--hidden", "ЖК Панорама", "Срок сдачи до 3 кв. 2021г.", "Арбат", "ул. Красная 240", "Рассрочка 12 мес.")
+                    button(class="btn-more")
+                        img(src="./img/plus-circle.svg" alt="Show more icons")
+                        span Показать еще
+                aside(class="sidebar")
+                    form
+                        div(class="widget")
+                            div(class="widget__title") Близость к метро
+                            div(class="widget__body")
+                                div(class="location")
+                                    div(class="location__row")
+                                        input(type="checkbox" id="location-01" checked="true" class="location__checkbox checkbox-simple")
+                                        label(class="location__btn" for="location-01") <10
+                                        input(type="checkbox" id="location-02" checked="true" class="location__checkbox checkbox-simple")
+                                        label(class="location__btn" for="location-02") 10-20
+                                        input(type="checkbox" id="location-03" class="location__checkbox checkbox-simple")
+                                        label(class="location__btn" for="location-03") 20-30
+                                        input(type="checkbox" id="location-04" class="location__checkbox checkbox-simple")
+                                        label(class="location__btn" for="location-04") 30+
+                                    div(class="location__row")
+                                        input(type="checkbox" id="location-05" class="location__checkbox checkbox-any")
+                                        label(class="location__btn" for="location-05") Любая
+                        div(class="widget")
+                            div(class="widget__title") Срок сдачи
+                            div(class="widget__body")
+                                label(class="radio")
+                                    input(type="radio" class="radio__real" name="term" checked)
+                                    span(class="radio__fake")
+                                    span(class="radio__title") Любой
+                                label(class="radio")
+                                    input(type="radio" class="radio__real" name="term")
+                                    span(class="radio__fake")
+                                    span(class="radio__title") Сдан
+                                label(class="radio")
+                                    input(type="radio" class="radio__real" name="term")
+                                    span(class="radio__fake")
+                                    span(class="radio__title") В этом году
+                                label(class="radio")
+                                    input(type="radio" class="radio__real" name="term")
+                                    span(class="radio__fake")
+                                    span(class="radio__title") В следующем году
+                        div(class="widget")
+                            div(class="widget__title") Дополнительные опции
+                            div(class="widget__body")
+                                label(class="checkbox")
+                                    input(type="checkbox" class="checkbox__real" name="addit-01" checked)
+                                    span(class="checkbox__fake")
+                                    span(class="checkbox__title") Двор без машин
+                                label(class="checkbox")
+                                    input(type="checkbox" class="checkbox__real" name="addit-02")
+                                    span(class="checkbox__fake")
+                                    span(class="checkbox__title") Высокие потолки
+                                label(class="checkbox")
+                                    input(type="checkbox" class="checkbox__real" name="addit-03")
+                                    span(class="checkbox__fake")
+                                    span(class="checkbox__title") Панорамные окна
+                                label(class="checkbox")
+                                    input(type="checkbox" class="checkbox__real" name="addit-04")
+                                    span(class="checkbox__fake")
+                                    span(class="checkbox__title") Есть кладовые
+                                label(class="checkbox")
+                                    input(type="checkbox" class="checkbox__real" name="addit-05")
+                                    span(class="checkbox__fake")
+                                    span(class="checkbox__title") Малоэтажный
+                                label(class="checkbox checkbox--hidden")
+                                    input(type="checkbox" class="checkbox__real" name="addit-06")
+                                    span(class="checkbox__fake")
+                                    span(class="checkbox__title") Доп. пункт 1
+                                label(class="checkbox checkbox--hidden")
+                                    input(type="checkbox" class="checkbox__real" name="addit-07")
+                                    span(class="checkbox__fake")
+                                    span(class="checkbox__title") Доп. пункт 2
+                                label(class="checkbox checkbox--hidden")
+                                    input(type="checkbox" class="checkbox__real" name="addit-08")
+                                    span(class="checkbox__fake")
+                                    span(class="checkbox__title") Доп. пункт 3
+                                button(data-options="hidden" class="widget__show-hidden") Показать ещё
+                        div(class="widget")
+                            div(class="widget__body")
+                                label(class="toggle")
+                                    input(type="checkbox" class="toggle__real" name="service" checked)
+                                    span(class="toggle__fake")
+                                    span(class="toggle__title") Услуги 0%
+                        div(class="widget")
+                            div(class="widget__body")
+                                button(class="form-btn form-btn--submit") Применить фильтры
+                                button(type="reset" class="form-btn")
+                                    img(src="./img/x.svg" alt="Show more icons")
+                                    span Сбросить фильтры
+        block scripts
+            script(src='js/main.js')

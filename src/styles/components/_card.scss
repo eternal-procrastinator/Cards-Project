@@ -1,0 +1,97 @@
+a.card__link {
+  text-decoration: none;
+  transition: all 0.2s ease-in;
+  display: inline-block;
+
+  &:hover{
+    opacity: 0.9;
+    transform: translateY(-5px);
+  }
+
+  .card {
+    position: relative;
+
+    .card__badges {
+      display: flex;
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      right: 15px;
+
+      & > * + * {
+        margin-left: 10px;
+      }
+
+      .card__badge {
+        display: inline-block;
+        background-color: #525252;
+        border-radius: 4px;
+        height: 22px;
+        padding: 0 10px;
+        line-height: 22px;
+      }
+
+      .card__badge--comfort {
+        background-color: #FFCF26;
+      }
+
+      .card__badge--installment {
+        background-color: #11BE75;
+      }
+    }
+
+    .card__image {
+      width: 270px;
+      height: 200px;
+
+      img{
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: inherit;
+        height: inherit;
+        z-index: -1;
+      }
+    }
+
+    .card__content {
+      background-color: white;
+      padding: 15px 15px 20px;
+
+      .card__title {
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 21px;
+        color: #000000;
+      }
+
+      .card__term {
+        margin-bottom: 10px;
+        color: #000000;
+      }
+
+      .card__metro {
+        margin-bottom: 10px;
+        color: #000000;
+
+        &::before {
+          content: "";
+          display: inline-block;
+          margin-right: 10px;
+          vertical-align: baseline;
+          width: 16px;
+          height: 11px;
+          background-image: url("./../img/metro.svg");
+          background-repeat: no-repeat;
+          background-size: initial;
+        }
+      }
+
+      .card__address {
+        color: #777777;
+      }
+    }
+  }
+}
